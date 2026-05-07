@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>MindNest Games</title>
+
+<meta name="description" content="MindNest Games - Mobile Game Studio on Google Play." />
+<meta name="keywords" content="MindNest Games, mobile games, Android games, Google Play" />
+<meta name="author" content="MindNest Games" />
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#0b0b0f;
+    --card:#15151c;
+    --border:#24242d;
+    --text:#ffffff;
+    --muted:#b5b5c3;
+    --accent:#8b5cf6;
+    --accent2:#06b6d4;
+}
+
+body{
+    font-family: Inter, Arial, sans-serif;
+    background: radial-gradient(circle at top left,#181824 0%,#0b0b0f 60%);
+    color:var(--text);
+    overflow-x:hidden;
+    line-height:1.7;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:90%;
+    max-width:1150px;
+    margin:auto;
+}
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    backdrop-filter: blur(16px);
+    background: rgba(10,10,15,0.7);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 0;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:0.5px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+}
+
+.nav-links a{
+    color:#d7d7df;
+    font-size:15px;
+    transition:0.3s ease;
+    position:relative;
+}
+
+.nav-links a::after{
+    content:'';
+    position:absolute;
+    bottom:-6px;
+    left:0;
+    width:0;
+    height:2px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    transition:0.3s ease;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+section{
+    padding:120px 0;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    border-radius:50%;
+    filter:blur(140px);
+    opacity:0.18;
+    top:-120px;
+    right:-120px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero h1{
+    font-size:70px;
+    line-height:1.05;
+    max-width:850px;
+    margin-bottom:26px;
+}
+
+.hero p{
+    max-width:700px;
+    font-size:18px;
+    color:var(--muted);
+}
+
+.hero-btns{
+    margin-top:38px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 28px;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:600;
+    transition:0.3s ease;
+}
+
+.btn-primary{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    color:#fff;
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.03);
+}
+
+.btn-secondary:hover{
+    background:rgba(255,255,255,0.06);
+}
+
+.section-title{
+    font-size:42px;
+    margin-bottom:16px;
+}
+
+.section-sub{
+    color:var(--muted);
+    max-width:760px;
+    font-size:16px;
+}
+
+.grid{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;
+}
+
+.card{
+    position:relative;
+    overflow:hidden;
+    padding:32px;
+    border-radius:24px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.06);
+    transition:0.35s ease;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    filter:blur(80px);
+    opacity:0.12;
+    top:-70px;
+    right:-70px;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,255,255,0.14);
+}
+
+.card h3{
+    font-size:22px;
+    margin-bottom:14px;
+    position:relative;
+    z-index:2;
+}
+
+.card p{
+    color:var(--muted);
+    font-size:15px;
+    position:relative;
+    z-index:2;
+}
+
+.contact-box{
+    margin-top:36px;
+    display:inline-block;
+    padding:22px 30px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    font-size:16px;
+}
+
+footer{
+    padding:40px 0;
+    border-top:1px solid rgba(255,255,255,0.06);
+    text-align:center;
+    color:#9898a5;
+    font-size:14px;
+}
+
+.fade{
+    opacity:0;
+    transform:translateY(35px);
+    transition:all 0.8s ease;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:900px){
+
+    .hero h1{
+        font-size:50px;
+    }
+
+    .section-title{
+        font-size:34px;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:18px;
+    }
+
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:18px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .btn{
+        width:100%;
+        text-align:center;
+    }
+
+    section{
+        padding:90px 0;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+
+            <a href="/" class="logo">
+                MindNest Games
+            </a>
+
+            <div class="nav-links">
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/privacy">Privacy</a>
+            </div>
+
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+
+    <div class="glow"></div>
+
+    <div class="container hero-content fade">
+
+        <h1>
+            Mobile Games Crafted For Fun & Engaging Experiences.
+        </h1>
+
+        <p>
+            MindNest Games is an independent mobile game studio focused on creating entertaining, accessible, and user-friendly experiences for players worldwide through the Google Play ecosystem.
+        </p>
+
+        <div class="hero-btns">
+
+            <a href="/about" class="btn btn-primary">
+                Learn More
+            </a>
+
+            <a href="/contact" class="btn btn-secondary">
+                Contact Us
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="about">
+
+    <div class="container fade">
+
+        <h2 class="section-title">
+            About
+        </h2>
+
+        <p class="section-sub">
+            MindNest Games is a mobile game studio dedicated to publishing enjoyable and polished experiences for Android users. We focus on simplicity, performance, and engaging gameplay while maintaining a smooth and secure experience for our players.
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Mobile First</h3>
+                <p>
+                    Our experiences are designed specifically for mobile users with smooth performance, responsive interaction, and modern design principles.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Player Experience</h3>
+                <p>
+                    We prioritize usability, accessibility, and enjoyable gameplay experiences suitable for a broad audience.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Trusted Publishing</h3>
+                <p>
+                    MindNest Games follows platform policies and industry standards to provide safe and reliable digital experiences.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="contact">
+
+    <div class="container fade">
+
+        <h2 class="section-title">
+            Contact
+        </h2>
+
+        <p class="section-sub">
+            For support requests, privacy inquiries, business communication, or feedback regarding our published applications, contact us anytime.
+        </p>
+
+        <div class="contact-box">
+            support@mindnestgames.site
+        </div>
+
+    </div>
+
+</section>
+
+<section id="privacy">
+
+    <div class="container fade">
+
+        <h2 class="section-title">
+            Privacy Policy
+        </h2>
+
+        <p class="section-sub">
+            Last Updated: May 2026
+        </p>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Introduction</h3>
+                <p>
+                    MindNest Games (“we”, “our”, or “us”) respects your privacy and is committed to protecting user information. This Privacy Policy explains how information may be collected, used, stored, and protected when you use our mobile applications, websites, and related services.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Information We Collect</h3>
+                <p>
+                    Depending on the application or service, we may collect limited information including device information, crash logs, analytics data, advertising identifiers, approximate location data, gameplay progress, and communication information voluntarily provided by users.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>How Information Is Used</h3>
+                <p>
+                    Information may be used to improve application performance, maintain security, provide technical support, personalize user experience, analyze usage trends, detect fraud or abuse, and comply with legal obligations.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Third-Party Services</h3>
+                <p>
+                    Our applications may use trusted third-party services such as analytics providers, advertising networks, cloud services, payment processors, or crash reporting tools. These services may process information according to their own privacy policies.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Advertising</h3>
+                <p>
+                    Some applications may display advertisements provided by third-party advertising partners. These partners may use advertising identifiers or similar technologies to provide relevant advertisements and measure advertising performance.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Children’s Privacy</h3>
+                <p>
+                    We do not knowingly collect personal information from children in violation of applicable laws. If you believe a child has provided personal information, please contact us so appropriate action can be taken.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Data Security</h3>
+                <p>
+                    We implement reasonable administrative, technical, and organizational measures designed to protect information against unauthorized access, disclosure, alteration, or destruction.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>User Rights</h3>
+                <p>
+                    Depending on your jurisdiction, you may have rights regarding access, correction, deletion, restriction, objection, or portability of your personal information.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Policy Updates</h3>
+                <p>
+                    This Privacy Policy may be updated periodically to reflect operational, legal, or regulatory changes. Updated versions will be published on this page with a revised effective date.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Contact Information</h3>
+                <p>
+                    If you have questions regarding this Privacy Policy or your information, please contact:
+                    <br><br>
+                    MindNest Games
+                    <br>
+                    support@mindnestgames.site
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <div class="container">
+        © 2026 MindNest Games. All rights reserved.
+    </div>
+</footer>
+
+<script>
+
+// Scroll Fade Animation
+
+const fades = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+
+    });
+
+},{
+    threshold:0.15
+});
+
+fades.forEach(el => observer.observe(el));
+
+
+// Clean URL Routing
+
+(function(){
+
+    const path = window.location.pathname;
+
+    if(path === "/about"){
+
+        document.getElementById("about").scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+    if(path === "/contact"){
+
+        document.getElementById("contact").scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+    if(path === "/privacy"){
+
+        document.getElementById("privacy").scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+})();
+
+</script>
+
+</body>
+</html>
